@@ -11,6 +11,9 @@ class Particle:
         for i in range(dim):
             self.position.append(random.uniform(bounds[i][0], bounds[i][1]))
             self.velocity.append(random.uniform(-1, 1))
+    
+    def getPos(self):
+        return(self.position)
 
     def update_position(self):
         for i in range(len(self.position)):
