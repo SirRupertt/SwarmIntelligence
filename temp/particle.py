@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 class Particle:
     def __init__(self, dim, bounds):
@@ -11,13 +12,10 @@ class Particle:
         for i in range(dim):
             self.position.append(random.uniform(bounds[i][0], bounds[i][1]))
             self.velocity.append(random.uniform(-1, 1))
-    
-    def getPos(self):
-        return(self.position)
 
-    def update_position(self):
+    def update_position(self, bounds):
         for i in range(len(self.position)):
-            self.position[i] += self.velocity[i]
+            self.position = np.clip(self.position + self.velocity, bounds[0][0], bounds[0][1])
 
     def update_velocity(self, global_best_position, w, c1, c2):
         for i in range(len(self.velocity)):
