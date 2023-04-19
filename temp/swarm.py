@@ -26,7 +26,6 @@ class Swarm:
         #ArrGen contains lists of each generation
         #Each gen in arrGen contains ArrPos
         #ArrPos contains arrays of x,y pairs of particle coordinates
-        arrGen = []
         for i in range(max_iter):
             arrPos = []
             for particle in self.particles:
@@ -38,5 +37,7 @@ class Swarm:
                 particle.update_velocity(self.global_best_position, self.w, self.c1, self.c2)
                 particle.update_position()
                 arrPos.append(particle.getPos())
-            arrGen.append(arrPos)
-        return(arrGen)
+            self.history.append(arrPos)
+
+    def getHistory(self):
+        return(self.history)
