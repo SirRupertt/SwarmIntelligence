@@ -55,17 +55,17 @@ for epoch in arrGen:
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
-    plt.savefig('C:/Users/Drew/Documents/GitHub/SwarmIntelligence/temp/images/image' + str(counter) + '.png')
+    plt.savefig('C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images/image' + str(counter) + '.png')
     plt.clf()
 
 # Set the directory containing the PNG files
-png_dir = 'C:/Users/Drew/Documents/GitHub/SwarmIntelligence/temp/images'
+png_dir = 'C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images'
 
 # Get a list of the PNG files in the directory
 png_files = sorted([os.path.join(png_dir, f) for f in os.listdir(png_dir) if f.endswith('.png')])
 
 # Create a new imageio writer object for saving the GIF
-gif_writer = imageio.get_writer('C:/Users/Drew/Documents/GitHub/SwarmIntelligence/temp/images/test.gif', mode='I', duration=0.2)
+gif_writer = imageio.get_writer('C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images/test.gif', mode='I', duration=0.2)
 
 # Loop over the PNG files and add them to the GIF
 for png_file in png_files:
