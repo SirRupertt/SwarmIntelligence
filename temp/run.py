@@ -41,8 +41,6 @@ for i in range(bounds[0][0], bounds[0][1]):
     curvex.append(i)
     curvey.append(i ** 2)
 
-plt.plot(curvex, curvey)
-
 counter = 0
 #Each Gen List 
 for epoch in arrGen:
@@ -55,17 +53,17 @@ for epoch in arrGen:
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
-    plt.savefig('C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images/image' + str(counter) + '.png')
+    plt.savefig('./images/image' + str(counter) + '.png')
     plt.clf()
 
 # Set the directory containing the PNG files
-png_dir = 'C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images'
+png_dir = './images'
 
 # Get a list of the PNG files in the directory
-png_files = sorted([os.path.join(png_dir, f) for f in os.listdir(png_dir) if f.endswith('.png')])
+png_files = sorted([os.path.join(png_dir, f) for f in os.listdir(png_dir) if f.endswith('.png')], key=os.path.getmtime)
 
 # Create a new imageio writer object for saving the GIF
-gif_writer = imageio.get_writer('C:/Users/drews/Programming/Learning/PProgramming-master/Github/SwarmIntelligence/temp/images/test.gif', mode='I', duration=0.2)
+gif_writer = imageio.get_writer('./images/test.gif', mode='I', duration=0.4)
 
 # Loop over the PNG files and add them to the GIF
 for png_file in png_files:
