@@ -6,7 +6,10 @@ import os
 
 # Define fitness function
 def fitness_func(position):
-    return position[0] ** 2
+    #x = position[0]
+    #(x+3)(x-2)^2(x+1)^3
+    #return ((x+3)((x-2)**2)((x+1)**3))
+    return position[0] **2
 
 # Set up the swarm
 num_particles = 50
@@ -63,7 +66,7 @@ png_dir = './images'
 png_files = sorted([os.path.join(png_dir, f) for f in os.listdir(png_dir) if f.endswith('.png')], key=os.path.getmtime)
 
 # Create a new imageio writer object for saving the GIF
-gif_writer = imageio.get_writer('./images/test.gif', mode='I', duration=0.4)
+gif_writer = imageio.get_writer('./images/test.gif', mode='I', duration=0.2)
 
 # Loop over the PNG files and add them to the GIF
 for png_file in png_files:
