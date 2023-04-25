@@ -49,10 +49,14 @@ for epoch in arrGen:
     # save as a png
     #Each particle arr in the generation 
     for particle in epoch:
-        plt.scatter(particle[0], fitness_func(particle))
+        t=np.linspace(-3,3, 50)
+        plt.scatter(particle[0], fitness_func(particle), c=t, cmap="cool")
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     plt.axhline(0, color='black', linewidth=.5)
     plt.axvline(0, color='black', linewidth=.5)
+    plt.style.use('dark_background')
+    #cmap = plt.get_cmap('cool')
+    #plt.set_cmap(cmap)
     plt.plot(curvex, curvey)
     plt.xlim(-3,3)
     plt.ylim(-5, 15)
