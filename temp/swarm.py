@@ -2,7 +2,7 @@ from particle import Particle
 import numpy as np
 
 class Swarm:
-    def __init__(self, num_particles, dim, bounds, fitness_func, w=0.05, c1=0.05, c2=0.07):
+    def __init__(self, num_particles, dim, bounds, fitness_func, w=0.05, c1=0.05, c2=0.05):
         self.num_particles = num_particles
         self.dim = dim
         self.bounds = bounds

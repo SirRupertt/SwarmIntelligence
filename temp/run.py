@@ -3,18 +3,19 @@ from swarm import Swarm
 import matplotlib.pyplot as plt
 import imageio.v2 as imageio
 import os
+import numpy as np
 
 # Define fitness function
 def fitness_func(position):
-    #x = position[0]
-    #(x+3)(x-2)^2(x+1)^3
-    #return ((x+3)((x-2)**2)((x+1)**3))
-    return position[0] **2
+    i = position[0]
+    #x^4-5x^2-x+3
+    return(i**4-5*i**2-i+3)
+    #return position[0] **2
 
 # Set up the swarm
 num_particles = 50
 dim = 1
-bounds = [[-10, 10]]
+bounds = [[-3, 3]]
 swarm = Swarm(num_particles, dim, bounds, fitness_func)
 
 # Optimize the function
@@ -28,8 +29,6 @@ print("Best fitness:", swarm.global_best_fitness)
 
 plt.figure(figsize=(10,6))
 plt.axes((0,0,10,100))
-plt.xlim([-15,15])
-plt.ylim([0, 100])
 
 #plt.scatter(x, y, label = "label_name" )
 
@@ -37,12 +36,11 @@ plt.ylim([0, 100])
 plt.xlabel('X Values')
 plt.ylabel('Y Values')
 
-curvex = []
+curvex = np.linspace(bounds[0][0], bounds[0][1], 100)
 curvey = []
 
-for i in range(bounds[0][0], bounds[0][1]):
-    curvex.append(i)
-    curvey.append(i ** 2)
+for i in curvex:
+    curvey.append(fitness_func([i]))
 
 counter = 0
 #Each Gen List 
@@ -51,9 +49,13 @@ for epoch in arrGen:
     # save as a png
     #Each particle arr in the generation 
     for particle in epoch:
-        plt.plot(curvex, curvey)
         plt.scatter(particle[0], fitness_func(particle))
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
+    plt.axhline(0, color='black', linewidth=.5)
+    plt.axvline(0, color='black', linewidth=.5)
+    plt.plot(curvex, curvey)
+    plt.xlim(-3,3)
+    plt.ylim(-5, 15)
     counter+=1
     print("Image " + str(counter) + " generated.")
     plt.savefig('./images/image' + str(counter) + '.png')
