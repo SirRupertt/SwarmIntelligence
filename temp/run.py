@@ -9,13 +9,14 @@ import numpy as np
 def fitness_func(position):
     i = position[0]
     #x^4-5x^2-x+3
-    return(i**4-5*i**2-i+3)
+    #return(i**4-5*i**2-i+3)
     #return position[0] **2
+    return(np.cos(i))
 
 # Set up the swarm
 num_particles = 50
 dim = 1
-bounds = [[-3, 3]]
+bounds = [[-15, 15]]
 swarm = Swarm(num_particles, dim, bounds, fitness_func)
 
 # Optimize the function
@@ -50,7 +51,7 @@ for epoch in arrGen:
     #Each particle arr in the generation 
     for particle in epoch:
         t=np.linspace(-3,3, 50)
-        plt.scatter(particle[0], fitness_func(particle), c=t, cmap="cool")
+        plt.scatter(particle[0], fitness_func(particle), c=particle[0], cmap="cool")
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     plt.axhline(0, color='black', linewidth=.5)
     plt.axvline(0, color='black', linewidth=.5)
@@ -58,8 +59,8 @@ for epoch in arrGen:
     #cmap = plt.get_cmap('cool')
     #plt.set_cmap(cmap)
     plt.plot(curvex, curvey)
-    plt.xlim(-3,3)
-    plt.ylim(-5, 15)
+    plt.xlim(-15,15)
+    plt.ylim(-2, 2)
     counter+=1
     print("Image " + str(counter) + " generated.")
     plt.savefig('./images/image' + str(counter) + '.png')
