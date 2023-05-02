@@ -15,7 +15,7 @@ class Particle:
 
     def update_position(self, bounds):
         for i in range(len(self.position)):
-            self.position = np.clip(self.position + self.velocity, bounds[0][0], bounds[0][1])
+            self.position = np.clip(self.position + self.velocity, bounds[i][0], bounds[i][1])
 
     def update_velocity(self, global_best_position, w, c1, c2):
         for i in range(len(self.velocity)):

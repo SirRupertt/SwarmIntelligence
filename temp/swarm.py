@@ -43,5 +43,4 @@ class Swarm:
             self.history.append(self.get_particles_positions())
 
     def getHistory(self):
-        print(self.history)
         return(self.history)
