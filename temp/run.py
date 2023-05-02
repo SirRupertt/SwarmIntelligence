@@ -29,7 +29,7 @@ print("Best position:", swarm.global_best_position)
 print("Best fitness:", swarm.global_best_fitness)
 
 fig = plt.figure()
-ax = plt.axes((0,0,10,100), projection='3d')
+ax = plt.axes(projection='3d')
 #plt.xlim([-15,15])
 #plt.ylim([0, 100])
 
@@ -38,14 +38,25 @@ ax = plt.axes((0,0,10,100), projection='3d')
 # Set x and y axes labels
 plt.xlabel('X Values')
 plt.ylabel('Y Values')
+plt.ylabel('Z Values')
 
-curvex = []
-curvey = []
-curvez = np.linspace(0,5,100)
+curvex = np.linspace(-5,5,25)
+curvez = np.linspace(-5,5,25)
 
-for i in range(bounds[0][0], bounds[0][1]):
-    curvex.append(i)
-    curvey.append(fitness_func(i))
+x_points = []
+y_points = []
+z_points = []
+points = []
+
+for x in curvex:
+    for z in curvez:
+      y = fitness_func([x, z])
+      x_points.append(x)
+      y_points.append(y)
+      z_points.append(z)
+
+ax.scatter3D(x_points, y_points, z_points, "gray")
+plt.show()
 
 counter = 0
 #Each Gen List 
