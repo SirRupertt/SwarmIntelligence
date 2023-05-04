@@ -65,8 +65,8 @@ for epoch in arrGen:
     # save as a png
     #Each particle arr in the generation 
     for particle in epoch:
-        plt.plot(curvex, curvey, curvez)
-        plt.scatter(particle[0], fitness_func(particle))
+        plt.plot3D(x_points, y_points, y_points)
+        plt.scatter3D(particle[0], fitness_func(particle), particle[1])
         plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
