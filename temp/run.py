@@ -18,9 +18,8 @@ num_particles = 50
 dim = 2
 bounds = [[-5, 5], [-5,5]]
 swarm = Swarm(num_particles, dim, bounds, fitness_func)
-
 # Optimize the function
-max_iter = 100
+max_iter = 5
 swarm.optimize(max_iter)
 arrGen = swarm.getHistory()
 
@@ -56,7 +55,7 @@ for x in curvex:
       z_points.append(z)
 
 ax.scatter3D(x_points, y_points, z_points, "gray")
-plt.show()
+#plt.show()
 
 counter = 0
 #Each Gen List 
@@ -65,13 +64,13 @@ for epoch in arrGen:
     # save as a png
     #Each particle arr in the generation 
     for particle in epoch:
-        plt.plot3D(x_points, y_points, y_points)
-        plt.scatter3D(particle[0], fitness_func(particle), particle[1])
-        plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
+        ax.plot3D(x_points, y_points, y_points)
+        ax.scatter3D(particle[0], fitness_func(particle), particle[1])
+        #plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
     plt.savefig('./images/image' + str(counter) + '.png')
-    plt.clf()
+    plt.cla()
 
 # Set the directory containing the PNG files
 png_dir = './images'
