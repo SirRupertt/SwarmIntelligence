@@ -32,30 +32,16 @@ ax = plt.axes(projection='3d')
 #plt.xlim([-15,15])
 #plt.ylim([0, 100])
 
-#plt.scatter(x, y, label = "label_name" )
+x = np.linspace(-6,6,25)
+y = np.linspace(-6,6,25)
 
-# Set x and y axes labels
-plt.xlabel('X Values')
-plt.ylabel('Y Values')
-plt.ylabel('Z Values')
+X, Y = np.meshgrid(x, y)
+Z = fitness_func([X, Y])
 
-curvex = np.linspace(-5,5,25)
-curvez = np.linspace(-5,5,25)
-
-x_points = []
-y_points = []
-z_points = []
-points = []
-
-for x in curvex:
-    for z in curvez:
-      y = fitness_func([x, z])
-      x_points.append(x)
-      y_points.append(y)
-      z_points.append(z)
-
-ax.scatter3D(x_points, y_points, z_points, "gray")
-#plt.show()
+ax.contour3D(X, Y, Z, 50, cmap='binary')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
 
 counter = 0
 #Each Gen List 
@@ -63,14 +49,15 @@ for epoch in arrGen:
     # plot the swarm at that epoch
     # save as a png
     #Each particle arr in the generation 
+    ax = plt.axes(projection='3d')
     for particle in epoch:
-        ax.plot3D(x_points, y_points, y_points)
+        ax.contour3D(X, Y, Z, 50, cmap='binary')
         ax.scatter3D(particle[0], fitness_func(particle), particle[1])
         #plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
     plt.savefig('./images/image' + str(counter) + '.png')
-    plt.cla()
+    plt.clf()
 
 # Set the directory containing the PNG files
 png_dir = './images'
