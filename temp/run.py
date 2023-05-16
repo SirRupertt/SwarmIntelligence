@@ -19,7 +19,7 @@ dim = 2
 bounds = [[-5, 5], [-5,5]]
 swarm = Swarm(num_particles, dim, bounds, fitness_func)
 # Optimize the function
-max_iter = 5
+max_iter = 30
 swarm.optimize(max_iter)
 arrGen = swarm.getHistory()
 
@@ -38,10 +38,7 @@ y = np.linspace(-6,6,25)
 X, Y = np.meshgrid(x, y)
 Z = fitness_func([X, Y])
 
-ax.contour3D(X, Y, Z, 50, cmap='binary')
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-ax.set_zlabel('z')
+#ax.contour3D(X, Y, Z, 50, cmap='binary')
 
 counter = 0
 #Each Gen List 
@@ -51,8 +48,9 @@ for epoch in arrGen:
     #Each particle arr in the generation 
     ax = plt.axes(projection='3d')
     for particle in epoch:
-        ax.contour3D(X, Y, Z, 50, cmap='binary')
-        ax.scatter3D(particle[0], fitness_func(particle), particle[1])
+        ax.contour3D(X, Y, Z, 35, cmap='binary', linewidths=0.75)
+        ax.scatter3D(particle[0], particle[1], fitness_func(particle))
+        ax.view_init(elev=10., azim=-15)
         #plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
     counter+=1
     print("Image " + str(counter) + " generated.")
@@ -75,3 +73,5 @@ for png_file in png_files:
 
 # Close the GIF writer to finish saving the file
 gif_writer.close()
+
+print("GIF COMPLETE.")
