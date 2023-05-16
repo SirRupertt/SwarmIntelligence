@@ -1,4 +1,5 @@
 import random
+import matplotlib as mpl
 from mpl_toolkits import mplot3d
 from swarm import Swarm
 import matplotlib.pyplot as plt
@@ -48,10 +49,12 @@ for epoch in arrGen:
     #Each particle arr in the generation 
     ax = plt.axes(projection='3d')
     for particle in epoch:
-        ax.contour3D(X, Y, Z, 35, cmap='binary', linewidths=0.75)
-        ax.scatter3D(particle[0], particle[1], fitness_func(particle))
+        ax.contour3D(X, Y, Z, 30, cmap='binary', linewidths=0.65)
+        z = fitness_func(particle)
+        p = ax.scatter3D(particle[0], particle[1], z, c=z, cmap='cool', vmin=0, vmax=10)
         ax.view_init(elev=10., azim=-15)
         #plt.figtext(0, .9, "Generation: " + str(counter), fontsize=15)
+    fig.colorbar(p, ax=ax)
     counter+=1
     print("Image " + str(counter) + " generated.")
     plt.savefig('./images/image' + str(counter) + '.png')
